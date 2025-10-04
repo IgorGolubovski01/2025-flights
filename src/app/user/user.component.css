@@ -1,0 +1,212 @@
+/* Page wrapper */
+.wrapper {
+  padding: 20px;
+  background: #f3f4f6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ---- User card ---- */
+.user-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  overflow: hidden;
+  width: 400px
+}
+
+.user-card mat-card-header {
+  padding: 16px;
+  align-items: center;
+}
+
+.user-card .example-header-image {
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.user-card mat-card-title {
+  font-weight: 700;
+  color: #222;
+}
+
+.user-card mat-card-subtitle {
+  color: #555;
+}
+
+.user-card mat-card-actions {
+  padding: 12px 16px 16px;
+}
+
+.user-card mat-card-actions button[mat-button] {
+  border-radius: 999px;
+  border: 1px solid #ccc;
+  background: #f9f9f9;
+  color: #222;
+  font-weight: 500;
+  transition: background 0.2s ease, transform 0.1s ease, border-color 0.2s ease;
+}
+.user-card mat-card-actions button[mat-button]:hover {
+  background: #efefef;
+  border-color: #bbb;
+}
+.user-card mat-card-actions button[mat-button]:active {
+  transform: translateY(1px);
+}
+
+/* ---- Empty state ---- */
+.no-order {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.no-order h1 {
+  margin: 0 0 6px 0;
+  font-size: 1.25rem;
+  color: #222;
+}
+.no-order p {
+  margin: 0;
+  color: #444;
+}
+.no-order a.cyan {
+  color: #1565c0;
+  text-decoration: underline;
+}
+
+/* ---- Orders table ---- */
+.wrapper h1 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #222;
+  margin: 8px 0;
+}
+
+/* Force light theme + polish (works with both legacy and MDC tables) */
+.wrapper ::ng-deep .mat-table,
+.wrapper ::ng-deep .mat-mdc-table {
+  width: 100%;
+  background: #fff !important;
+  border: 1px solid #ddd !important;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+/* Header */
+.wrapper ::ng-deep .mat-header-cell,
+.wrapper ::ng-deep .mat-mdc-header-cell {
+  font-weight: 700 !important;
+  background: #1565c0 !important;
+  color: #fff !important;
+  padding: 12px !important;
+  font-size: 0.95rem !important;
+  white-space: nowrap;
+}
+
+/* Cells */
+.wrapper ::ng-deep .mat-cell,
+.wrapper ::ng-deep .mat-mdc-cell {
+  padding: 12px !important;
+  color: #222 !important;
+  background: #fff !important;
+  border-bottom: 1px solid #eee !important;
+  font-size: 0.95rem !important;
+}
+
+/* Zebra rows */
+.wrapper ::ng-deep .mat-row:nth-child(even) .mat-cell,
+.wrapper ::ng-deep .mat-mdc-row:nth-child(even) .mat-mdc-cell {
+  background: #fafafa !important;
+}
+
+/* Hover highlight */
+.wrapper ::ng-deep .mat-row:hover .mat-cell,
+.wrapper ::ng-deep .mat-mdc-row:hover .mat-mdc-cell {
+  background: #e3f2fd !important;
+}
+
+/* Actions column layout */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 8px;
+  align-items: center;
+}
+.actions a[mat-button],
+.actions button[mat-button] {
+  border-radius: 999px;
+  padding: 4px 10px;
+  border: 1px solid #ccc;
+  background: #f9f9f9;
+  color: #1565c0;
+  font-weight: 500;
+  transition: background 0.2s ease, transform 0.1s ease, border-color 0.2s ease;
+}
+.actions a[mat-button]:hover,
+.actions button[mat-button]:hover {
+  background: #efefef;
+  border-color: #bbb;
+}
+.actions a[mat-button]:active,
+.actions button[mat-button]:active {
+  transform: translateY(1px);
+}
+
+/* Status + Rating visual treatment */
+.wrapper ::ng-deep td.mat-cell:nth-child(6) { /* Total column -> stronger */
+  font-weight: 600;
+  color: #1a1a1a !important;
+}
+
+.wrapper ::ng-deep td.mat-cell:nth-child(7) { /* Status column */
+  font-weight: 600;
+}
+
+.wrapper ::ng-deep td.mat-cell:nth-child(8) div { /* Rating cell badges */
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+.wrapper ::ng-deep td.mat-cell:nth-child(8) div:nth-child(1) { /* NO RATING */
+  background: #f0f0f0;
+  color: #666;
+}
+.wrapper ::ng-deep td.mat-cell:nth-child(8) div:nth-child(2) { /* LIKED */
+  background: #e6f4ea;
+  color: #1e7e34;
+}
+.wrapper ::ng-deep td.mat-cell:nth-child(8) div:nth-child(3) { /* DISLIKED */
+  background: #fdecea;
+  color: #b02a37;
+}
+
+/* Optional: sticky header for long lists */
+.wrapper ::ng-deep .mat-header-row,
+.wrapper ::ng-deep .mat-mdc-header-row {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+/* Responsive tweaks */
+@media (max-width: 700px) {
+  .user-card mat-card-header {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .wrapper ::ng-deep .mat-header-cell,
+  .wrapper ::ng-deep .mat-mdc-header-cell,
+  .wrapper ::ng-deep .mat-cell,
+  .wrapper ::ng-deep .mat-mdc-cell {
+    padding: 10px !important;
+  }
+}

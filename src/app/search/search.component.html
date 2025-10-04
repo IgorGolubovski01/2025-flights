@@ -1,0 +1,94 @@
+<div class="search-page" *ngIf="dataSource; else loading">
+  <h1>Search</h1>
+
+  <mat-card class="search-card">
+    <mat-card-content>
+      <div class="row">
+        <mat-form-field appearance="outline" class="field">
+          <mat-label>Search (Flight number or Destination)</mat-label>
+          <input
+            matInput
+            placeholder="Enter flight number or destination"
+            [(ngModel)]="userInput"
+            (keyup)="doFilterChain()" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="field">
+          <mat-label>Select Date</mat-label>
+          <mat-select [(ngModel)]="selectedDate" (selectionChange)="doFilterChain()">
+            <mat-option [value]="null">All dates</mat-option>
+            <mat-option *ngFor="let date of dateOptions" [value]="date">
+              {{ date }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button mat-stroked-button color="primary" class="reset-btn" (click)="doReset()">
+          <i class="fa-solid fa-ban"></i>&nbsp;Reset
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="table-wrap">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef class="hide-780">
+          <i class="fa-solid fa-hashtag"></i> ID
+        </th>
+        <td mat-cell *matCellDef="let el" class="hide-780">{{ el.id }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="destination">
+        <th mat-header-cell *matHeaderCellDef>
+          <i class="fa-solid fa-map-location-dot"></i> Destination
+        </th>
+        <td mat-cell *matCellDef="let el">{{ el.destination }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="flightNumber">
+        <th mat-header-cell *matHeaderCellDef>
+          <i class="fa-solid fa-plane-circle-exclamation"></i> Flight Number
+        </th>
+        <td mat-cell *matCellDef="let el">{{ el.flightNumber }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="scheduledAt">
+        <th mat-header-cell *matHeaderCellDef class="hide-600">
+          <i class="fa-solid fa-clock-rotate-left"></i> Scheduled At
+        </th>
+        <td mat-cell *matCellDef="let el" class="hide-600">
+          {{ utils.formatDate(el.estimatedAt ? el.estimatedAt : el.scheduledAt) }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>
+          <i class="fa-solid fa-location-arrow"></i> Actions
+        </th>
+        <td mat-cell *matCellDef="let el">
+          <a mat-button [routerLink]="['/details/', el.id]">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            <span class="link-name hide-780"> Details</span>
+          </a>
+          <a mat-button [routerLink]="['/details/' + el.id + '/order']">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="link-name hide-780">   Book Now</span>
+          </a>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <p class="no-results" *ngIf="dataSource.length === 0">
+      No flights found.
+    </p>
+  </div>
+</div>
+
+<ng-template #loading>
+  <div class="loading-fallback">Loading…</div>
+</ng-template>

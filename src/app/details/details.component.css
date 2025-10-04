@@ -1,0 +1,154 @@
+.wrapper {
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+}
+
+.wrapper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--bg-url);
+    z-index: 0;
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    opacity: 0.3;
+}
+
+.wrapper>* {
+    position: relative;
+    z-index: 1;
+}
+
+.wrapper h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #fff;
+    text-align: center;
+}
+
+.flight-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+    align-items: flex-start;
+    
+}
+
+.flight-content img[mat-card-image] {
+    width: 400px;
+    height: 345px;
+    max-width: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+mat-card.flight-card {
+    flex: 1 1 400px;
+    max-width: 600px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.95);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+mat-card.flight-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #1976d2;
+}
+
+mat-card.flight-card mat-list-item {
+    padding: 6px 0;
+    font-size: 0.95rem;
+    border-bottom: 1px solid #eee;
+    color: black !important
+}
+
+mat-card.flight-card mat-list-item:last-child {
+    border-bottom: none;
+}
+
+mat-card-actions {
+    padding: 12px 16px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+mat-card-actions a[mat-button] {
+    border-radius: 999px;
+    padding: 8px 16px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    background: #1976d2;
+    color: #fff;
+    font-weight: 500;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+mat-card-actions a[mat-button]:hover {
+    background: #1565c0;
+}
+
+mat-card-actions a[mat-button]:active {
+    transform: translateY(1px);
+}
+
+.flight-map {
+    flex: 1 1 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.flight-map iframe {
+    width: 100%;
+    height: 500px;
+    border: none;
+    border-radius: 12px;
+}
+
+@media (max-width: 1024px) {
+    .flight-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .flight-map iframe {
+        height: 400px;
+    }
+}
+
+@media (max-width: 600px) {
+    .wrapper h1 {
+        font-size: 1.5rem;
+    }
+
+    .flight-map iframe {
+        height: 300px;
+    }
+}
+
+h1 {
+    background-color: #1872ce;
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50px;
+}

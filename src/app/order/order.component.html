@@ -1,0 +1,61 @@
+<div *ngIf="flight"
+     class="order-wrapper"
+     [ngStyle]="{'--bg-url': 'url(' + utils.generateDestinationImage(flight.destination) + ')'}">
+
+  <div class="order-card">
+    <img class="hero" [src]="utils.generateDestinationImage(flight.destination)" [alt]="flight.destination">
+
+    <div class="content">
+      <h3>New Order {{ flight.destination }}</h3>
+
+      <label class="field">
+        <span class="label">Destination</span>
+        <input class="input readonly" type="text" [value]="flight.destination" readonly>
+      </label>
+
+      <label class="field">
+        <span class="label">Flight Number</span>
+        <input class="input readonly" type="text" [value]="flight.flightNumber" readonly>
+      </label>
+
+      <label class="field">
+        <span class="label">Scheduled At</span>
+        <input class="input readonly" type="text" [value]="utils.formatDate(flight.scheduledAt)" readonly>
+      </label>
+
+      <label class="field">
+        <span class="label">Airline</span>
+        <div class="select-wrap">
+          <select class="select" [(ngModel)]="selectedAirline">
+            <option *ngFor="let airline of airlines" [ngValue]="airline.id">{{ airline.name }}</option>
+          </select>
+          <i class="fa-solid fa-chevron-down caret"></i>
+        </div>
+      </label>
+
+      <label class="field">
+        <span class="label">Choose price</span>
+        <div class="select-wrap">
+          <select class="select" [(ngModel)]="selectedPrice">
+            <option [ngValue]="150">Economy - 150€</option>
+            <option [ngValue]="480">Business - 480€</option>
+            <option [ngValue]="850">First Class - 850€</option>
+          </select>
+          <i class="fa-solid fa-chevron-down caret"></i>
+        </div>
+      </label>
+
+      <label class="field">
+        <span class="label">Ticket Count</span>
+        <input class="input" type="number" min="1" [(ngModel)]="selectedTicketCount">
+      </label>
+    </div>
+
+    <div class="actions">
+      <button class="primary" (click)="doOrder()">
+        <i class="fa-solid fa-cart-shopping"></i>
+        Order Now
+      </button>
+    </div>
+  </div>
+</div>

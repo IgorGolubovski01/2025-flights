@@ -1,0 +1,87 @@
+mat-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  gap: 6px;
+
+  background: linear-gradient(90deg, #1976d2, #1565c0);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+mat-toolbar > span:first-child {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: 0.2px;
+  color: #fff;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+mat-toolbar a[mat-button],
+mat-toolbar button[mat-button] {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  padding: 6px 12px;
+  text-decoration: none;
+  transition: background-color 140ms ease, transform 120ms ease, box-shadow 140ms ease;
+  line-height: 1;
+  color: #fff;
+}
+
+mat-toolbar a[mat-button]:hover,
+mat-toolbar button[mat-button]:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+mat-toolbar a[mat-button]:active,
+mat-toolbar button[mat-button]:active {
+  transform: translateY(1px);
+}
+
+mat-toolbar a[mat-button]:focus-visible,
+mat-toolbar button[mat-button]:focus-visible {
+  outline: 2px solid rgba(255,255,255,0.8);
+  outline-offset: 2px;
+}
+
+mat-toolbar i.fa-solid {
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+.about-btn {
+  border: 1px solid rgba(255,255,255,0.25);
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+.about-btn:hover {
+  background: rgba(255,255,255,0.2);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+}
+
+mat-toolbar a[mat-button][aria-current="page"] {
+  background: rgba(255,255,255,0.25);
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.25) inset;
+  font-weight: 600;
+  pointer-events: none;
+}
+
+@media (max-width: 600px) {
+  .link-name {
+    display: none;
+  }
+  mat-toolbar {
+    gap: 2px;
+    padding: 0 6px;
+  }
+}
