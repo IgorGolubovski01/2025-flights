@@ -20,12 +20,9 @@ export class HomeComponent {
   public error: string | null = null
 
   constructor(public utils: UtilsService) {
-    FlightService.getFlights(0, 9)
+    FlightService.getFlights(0, 12)
       .then(rsp => {
         this.flights = rsp.data.content
-        for (let f of this.flights!) {
-          f.temperature = Math.floor(Math.random() * (35 - 12 + 1) + 12)
-        }
       })
       .catch((e: AxiosError) => this.error = `${e.code}: ${e.message}`)
   }

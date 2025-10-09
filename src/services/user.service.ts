@@ -141,24 +141,23 @@ export class UserService {
     }
 
     static changeEmail(newEmail: string): boolean {
-    const arr = this.retrieveUsers()
-    const activeEmail = localStorage.getItem('active')
+        const arr = this.retrieveUsers()
+        const activeEmail = localStorage.getItem('active')
 
-    // Prevent duplicates
-    if (arr.some(u => u.email === newEmail)) {
-        return false // email already exists
-    }
-
-    for (let user of arr) {
-        if (user.email === activeEmail) {
-            user.email = newEmail
-            localStorage.setItem('active', newEmail) // update active reference
-            localStorage.setItem('users', JSON.stringify(arr))
-            return true
+        if (arr.some(u => u.email === newEmail)) {
+            return false
         }
-    }
 
-    return false
-}
+        for (let user of arr) {
+            if (user.email === activeEmail) {
+                user.email = newEmail
+                localStorage.setItem('active', newEmail)
+                localStorage.setItem('users', JSON.stringify(arr))
+                return true
+            }
+        }
+
+        return false
+    }
 
 }

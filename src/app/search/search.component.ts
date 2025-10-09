@@ -51,8 +51,6 @@ export class SearchComponent {
   }
 
   public inputSearch(source: FlightModel[]) {
-    this.destinationList = [...new Set(source.map(f => f.destination))];
-    this.flightNumberList = [...new Set(source.map(f => f.flightNumber))];
     this.dateOptions = [...new Set(source.map(f => f.scheduledAt.split('T')[0]))];
   }
 
@@ -70,7 +68,6 @@ export class SearchComponent {
 
     this.dataSource = this.allData
       .filter(obj => {
-        // Input search (destination OR flight number)
         if (this.userInput.trim() === '') return true;
         const input = this.userInput.toLowerCase();
         return obj.destination.toLowerCase().includes(input) ||
@@ -78,7 +75,6 @@ export class SearchComponent {
           obj.id.toString().includes(input);
       })
       .filter(obj => {
-        // Date filter
         if (this.selectedDate == null) return true;
         const start = new Date(`${this.selectedDate}T00:00:01`);
         const end = new Date(`${this.selectedDate}T23:59:59`);

@@ -4,12 +4,12 @@ const client = axios.create({
     baseURL: 'https://flight.pequla.com/api',
     headers: {
         'Accept': 'application/json',
-        'X-Client-Name': 'KVA/2025'
+        'X-Client-Name': 'ICR/2025'
     },
     validateStatus: (status: number) => {
         return status === 200
-        // Samo ako je 200 vrati response
-        // U ostalim slucajevima baci izuzetak
+        // samo ako je 200 vrati response
+        // u ostalim slucajevima baci izuzetak
     }
 })
 
